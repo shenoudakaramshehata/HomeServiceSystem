@@ -1,0 +1,77 @@
+﻿@page
+@model HomeService.Areas.Admin.Pages.Technicians.AddModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Add"]  @sharedResource["Technician"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <br />
+                        <form id="form" method="post" enctype="multipart/form-data">
+                            <div class="text-danger" asp-validation-summary="All"></div>
+                            @(Html.DevExtreme().Form<HomeService.Entities.TechnicianVM>().ColCount(2)
+         .FormData(Model.model)
+    .Items(items => {
+
+
+    items.AddSimpleFor(m => m.FullNameAr).IsRequired(true).Label(k => k.Text(sharedResource["TlAr"]));
+    items.AddSimpleFor(m => m.FullNameEn).IsRequired(true).Label(k => k.Text(sharedResource["TlEn"]));
+    items.AddSimpleFor(m => m.FullAddress).IsRequired(true).Label(k => k.Text(sharedResource["Address"]));
+    items.AddSimpleFor(m => m.CivilId).IsRequired(true).Label(k => k.Text(sharedResource["CivilId"]));
+    items.AddSimpleFor(m => m.NationalityId).IsRequired(true).Label(k => k.Text(sharedResource["Nationality"]))
+.Editor(e => e
+.Lookup()
+.DataSource(ds => ds.WebApi().Controller("Technicians").LoadAction("NationalityLookup").Key("Value"))
+.ValueExpr("Value")
+.DisplayExpr("Text")
+);
+
+
+
+    items.AddSimpleFor(m => m.PassportNo).IsRequired(true).Label(k => k.Text(sharedResource["PassportNo"]));
+    items.AddSimpleFor(m => m.Mobile).IsRequired(true).Label(k => k.Text(sharedResource["Mobile"]));
+    items.AddSimpleFor(m => m.Tele).IsRequired(true).Label(k => k.Text(sharedResource["Tele"]));
+    items.AddSimpleFor(m => m.Remarks).IsRequired(true).Label(k => k.Text(sharedResource["Remarks"])).Editor(c => c.TextArea().Height(150));
+    items.AddSimpleFor(m => m.Pic).ColSpan(2).IsRequired(true).Label(k => k.Text(sharedResource["Picture"])).Template(@<text>
+                            @(Html.DevExtreme().FileUploader()
+                                        .Name("Photo")
+                                        .SelectButtonText(sharedResource["Select_photo"])
+                                        .LabelText("")
+                                        .Accept("image/*")
+                                        .UploadMode(FileUploadMode.UseForm)
+                                        .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+                                        .Height(100)
+
+                                                        ) </text>);
+
+           
+
+        items.AddSimpleFor(m => m.Email).IsRequired(true).Label(k => k.Text(sharedResource["Email"])).Editor(c=>c.TextBox().Mode(TextBoxMode.Email));
+        items.AddSimpleFor(m => m.Password).IsRequired(true).Label(k => k.Text(sharedResource["Password"])).Editor(c => c.TextBox().Mode(TextBoxMode.Password));
+        items.AddSimpleFor(m => m.ConfirmPassword).IsRequired(true).Label(k => k.Text(sharedResource["ConfirmPassword"])).Editor(c => c.TextBox().Mode(TextBoxMode.Password));
+
+        items.AddButton()
+                     .ColSpan(3)
+                     .HorizontalAlignment(HorizontalAlignment.Right)
+                     .ButtonOptions(b => b.Text(sharedResource["Save"])
+                     .Type(ButtonType.Success)
+                     .UseSubmitBehavior(true)).CssClass("invers");
+    })
+)
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

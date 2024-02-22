@@ -1,0 +1,111 @@
+﻿@page
+@model HomeService.Areas.Admin.Pages.Customers.DetailsModel
+@{
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Details"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Informations"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["TlAr"] </div>
+                                        <div> @Model.customer.FullNameAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.customer.FullNameEn </div>
+                                    </div> 
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Nationality"]  </div>
+                                        <div> @Model.customer.Nationality.NationalityTlAr </div>
+                                    </div> 
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Email"]  </div>
+                                        <div> @Model.customer.Email </div>
+                                    </div> 
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tele1"]  </div>
+                                        <div> @Model.customer.Tele1 </div>
+                                    </div> 
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tele2"]  </div>
+                                        <div> @Model.customer.Tele2 </div>
+                                    </div> 
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Mobile"]  </div>
+                                        <div> @Model.customer.Mobile </div>
+                                    </div> 
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Remarks"]  </div>
+                                        <div> @Model.customer.Remarks </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Picture"]  </div>
+                                        <div class="Details_img">
+                                            <img style="border-radius: 13%;" class="img-fluid" src="~/Images/Customer/@Model.customer.Pic" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Address"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["City"]  </div>
+                                        <div> @Model.customer.Area.City.CityTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Area"]  </div>
+                                        <div> @Model.customer.Area.AreaTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Street"]  </div>
+                                        <div> @Model.customer.Street </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Block"]  </div>
+                                        <div> @Model.customer.Block </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Avenue"]  </div>
+                                        <div> @Model.customer.Avenue </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["BuildingNo"]  </div>
+                                        <div> @Model.customer.BuildingNo </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Floor"]  </div>
+                                        <div> @Model.customer.Floor </div>
+                                    </div>
+                                
+                                </div>
+
+
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  

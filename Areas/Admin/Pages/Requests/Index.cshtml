@@ -1,0 +1,106 @@
+﻿@page
+@model HomeService.Areas.Admin.Pages.Requests.IndexModel
+@{
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Requests"]
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="Filter-side">
+
+                            @(Html.DevExtreme().SelectBox()
+        .DataSource(Model.statelst)
+.ValueExpr(nameof(HomeService.Entities.RequestStateVM.RequestStateId))
+.DisplayExpr(nameof(HomeService.Entities.RequestStateVM.RequestStateEn))
+        .Value(0)
+        .OnValueChanged(@<text>
+            function(data) {
+                var dataGrid = $("#gridContainer").dxDataGrid("instance");
+                if (data.value == 0)
+                    dataGrid.clearFilter();
+                else
+                    dataGrid.filter(["RequestStateId", "=",data.value]);
+                           
+            }
+        </text>)
+    )
+                        </div>
+                        @(Html.DevExtreme().DataGrid<HomeService.Models.Request>()
+                         .ID("gridContainer")
+
+                                                                  .DataSource(ds => ds.Mvc()
+                     .Controller("Requests")
+                     .LoadAction("Get")
+                     .InsertAction("Post")
+                     .UpdateAction("Put")
+                     .DeleteAction("Delete")
+                     .Key("RequestId")
+                     )
+                     .Columns(columns =>
+                     {
+                     //.Editor(c => c.DateBox().Type(DateBoxType.DateTime).Value(DateTime.Now));
+
+                     columns.AddFor(m => m.Customer.FullNameAr).Caption(sharedResource["Customer"]).Visible(bool.Parse(sharedResource["ArLang"]));
+                     columns.AddFor(m => m.Customer.FullNameEn).Caption(sharedResource["Customer"]).Visible(!bool.Parse(sharedResource["ArLang"]));
+                     columns.AddFor(m => m.RequestDate).Caption(sharedResource["RequestDate"]).DataType(GridColumnDataType.Date).Format("dd-MM-yyyy HH:mm:ss");
+                     columns.AddFor(m => m.ScheduleDate).Caption(sharedResource["ScheduleDate"]).DataType(GridColumnDataType.Date).Format("dd-MM-yyyy HH:mm:ss");
+                     columns.AddFor(m => m.Technician.FullNameAr).Caption(sharedResource["Technician"]).Visible(bool.Parse(sharedResource["ArLang"]));
+                     columns.AddFor(m => m.Technician.FullNameEn).Caption(sharedResource["Technician"]).Visible(!bool.Parse(sharedResource["ArLang"]));
+                     columns.AddFor(m => m.ServiceCategory.ServiceCategoryTlEn).Caption(sharedResource["ServiceCategory"]).Visible(!bool.Parse(sharedResource["ArLang"]));
+                     columns.AddFor(m => m.ServiceCategory.ServiceCategoryTlAr).Caption(sharedResource["ServiceCategory"]).Visible(bool.Parse(sharedResource["ArLang"]));
+
+                     columns.AddFor(m => m.RequestStateId).Caption(sharedResource["RequestState"]).Visible(false);
+                     columns.AddFor(m => m.RequestState.RequestStateAr).Caption(sharedResource["RequestState"]).Visible(!bool.Parse(sharedResource["ArLang"]));
+                     columns.AddFor(m => m.RequestState.RequestStateEn).Caption(sharedResource["RequestState"]).Visible(bool.Parse(sharedResource["ArLang"]));
+                     columns.Add().Caption(sharedResource["Actions"]).Width(200).Alignment(HorizontalAlignment.Center).CellTemplate(@<text>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-primary btn-sm"  href="/Admin/Requests/Details?id=<%- data.RequestId %>"> <i class="fas fa-eye"></i> </a>
+                                <a class="btn btn-success btn-sm"  href="/Admin/Requests/Edit?id=<%- data.RequestId %>">  <i class="fas fa-edit"></i> </a>
+
+                            @*     <a class="btn btn-danger btn-sm" href="/Admin/Requests/Delete?id=<%- data.RequestId %>">  <i class="fas fa-trash"></i> </a>*@
+                            </div>
+                            </text>).Width(200);
+
+                     })
+          .Paging(paging => paging.PageSize(10))
+                        .Pager(pager =>
+                        {
+                            pager.Visible(true);
+                            pager.DisplayMode(GridPagerDisplayMode.Full);
+                            pager.ShowPageSizeSelector(true);
+                            pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+                            pager.ShowInfo(true);
+                            pager.ShowNavigationButtons(true);
+
+                        })
+        .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(false)
+                            .ShowRowLines(true)
+                            .RowAlternationEnabled(true)
+                            .AllowColumnReordering(true)
+                            .ShowColumnLines(true)
+                            .ShowRowLines(true)
+                            .ShowBorders(true)
+                            .SearchPanel(searchPanel => searchPanel
+                            .Visible(true)
+                            .Width(240)
+                            .Placeholder(sharedResource["SearchTxt"]))
+                            .RemoteOperations(true)
+                            .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

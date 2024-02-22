@@ -1,0 +1,153 @@
+﻿@page
+@model HomeService.Areas.Admin.Pages.Requests.DetailsModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Details"] 
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <br />
+                        <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Customer"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["TlAr"] </div>
+                                        <div> @Model.customerRequest.FullNameAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.customerRequest.FullNameEn </div>
+                                    </div>
+                                   
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Email"]  </div>
+                                        <div> @Model.customerRequest.Email </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tele1"]  </div>
+                                        <div> @Model.customerRequest.Tele1 </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tele2"]  </div>
+                                        <div> @Model.customerRequest.Tele2 </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Mobile"]  </div>
+                                        <div> @Model.customerRequest.Mobile </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Remarks"]  </div>
+                                        <div> @Model.customerRequest.CustomerRemarks </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Picture"]  </div>
+                                        <div class="Details_img">
+                                            <img style="border-radius: 13%;" class="img-fluid" src="~/Images/Customer/@Model.customerRequest.Pic" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Address"] </h4>
+                                    <hr />
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Street"]  </div>
+                                        <div> @Model.customerRequest.Street </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Block"]  </div>
+                                        <div> @Model.customerRequest.Block </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Avenue"]  </div>
+                                        <div> @Model.customerRequest.Avenue </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["BuildingNo"]  </div>
+                                        <div> @Model.customerRequest.BuildingNo </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Floor"]  </div>
+                                        <div> @Model.customerRequest.Floor </div>
+                                    </div>
+
+                                </div>
+                                 <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["RequestState"] </h4>
+                                    <hr />
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.customerRequest.RequestStateEn </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.customerRequest.RequestStateAr </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["ServiceCategory"] </h4>
+                                    <hr />
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.customerRequest.ServiceCategoryTlEn </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlAr"]  </div>
+                                        <div> @Model.customerRequest.ServiceCategoryTlAr </div>
+                                    </div>
+
+                                </div>
+                                @if (Model.customerRequest.TechnicianId.HasValue)
+                                {
+
+                                
+                          <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Technician"] </h4>
+                                    <hr />
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["NameAr"]  </div>
+                                        <div> @Model.customerRequest.TechnicianFullNameAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["NameEn"]  </div>
+                                        <div> @Model.customerRequest.TechnicianFullNameEn </div>
+                                    </div>
+                              <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Mobile"]  </div>
+                                        <div> @Model.customerRequest.TechnicianMobile </div>
+                                    </div>
+                              <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Address"]  </div>
+                                        <div> @Model.customerRequest.TechnicianFullAddress </div>
+                                    </div>
+
+                                </div>
+                                }
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

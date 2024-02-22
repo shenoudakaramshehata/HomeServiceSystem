@@ -1,0 +1,80 @@
+﻿@page
+@model HomeService.Areas.Admin.Pages.Contracts.AddModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Add"]  @sharedResource["Contract"]
+                            <a asp-page="Index" class="btn btn-primary"> @sharedResource["Back"]</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <br />
+                        <form id="form" method="post" enctype="multipart/form-data">
+                            <div class="text-danger" asp-validation-summary="All"></div>
+
+                            @Html.Hidden("ServiceIds", "")
+                            @(Html.DevExtreme().Form<HomeService.Models.Contract>()
+  .FormData(Model.model)
+
+
+.Items(items => {
+
+
+items.AddSimpleFor(m => m.CustomerId).IsRequired(true).Label(k => k.Text(sharedResource["Customer"]))
+   .Editor(e => e
+       .Lookup()
+       .DataSource(ds => ds.WebApi().Controller("Contracts").LoadAction("CustomerLookup").Key("Value"))
+       .ValueExpr("Value")
+       .DisplayExpr("Text")
+   );
+items.AddSimpleFor(m => m.UnitId).IsRequired(true).Label(k => k.Text(sharedResource["Unit"]))
+.Editor(e => e
+   .Lookup()
+   .DataSource(ds => ds.WebApi().Controller("Contracts").LoadAction("UnitLookup").Key("Value"))
+   .ValueExpr("Value")
+   .DisplayExpr("Text")
+);
+items.AddSimple().IsRequired(true).Label(c=>c.Text("Shooters"))
+    .Editor(e => e.TagBox()
+
+.DataSource(ds => ds.WebApi().Controller("Contracts").LoadAction("ServiceLookup").Key("Value"))
+.ValueExpr("Value")
+.DisplayExpr("Text")
+.OnValueChanged(@<text>
+                    function(data) {
+                     $("#ServiceIds").val(data.value);
+
+                    }
+                </text>)
+         .ShowSelectionControls(true)
+         .ApplyValueMode(EditorApplyValueMode.UseButtons)
+
+                );
+    items.AddSimpleFor(m => m.StartDate).IsRequired(true).Label(k => k.Text(sharedResource["StartDate"]));
+    items.AddSimpleFor(m => m.EndDate).IsRequired(true).Label(k => k.Text(sharedResource["EndDate"]));
+
+    items.AddSimpleFor(m => m.Amount).IsRequired(true).Label(k => k.Text(sharedResource["Amount"]));
+    items.AddSimpleFor(m => m.Remarks).IsRequired(true).Label(k => k.Text(sharedResource["Remarks"])).Editor(c => c.TextArea().Height(150));
+    items.AddButton()
+                     .ColSpan(3)
+                     .HorizontalAlignment(HorizontalAlignment.Right)
+                     .ButtonOptions(b => b.Text(sharedResource["Save"])
+                     .Type(ButtonType.Success)
+                     .UseSubmitBehavior(true)).CssClass("invers");
+})
+)
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

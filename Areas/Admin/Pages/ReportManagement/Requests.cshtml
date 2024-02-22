@@ -1,0 +1,85 @@
+﻿@page
+@model HomeService.Areas.Admin.Pages.ReportManagement.RequestsModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Admin/assets/css/slim.css">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<div class="slim-mainpanel p-4">
+    <div class="container">
+        <div class="slim-pageheader">
+
+        </div><!-- slim-pageheader -->
+
+
+
+        <div class="row row-sm row-timeline">
+            <div class="col-lg-3 p-3 mg-lg-t-0">
+                <div class="card pd-20 mg-t-40">
+                    <label class="slim-card-title">@sharedResource["Filter"]</label>
+                    <div class="post-group">
+
+                        @using (Html.BeginForm(FormMethod.Post))
+                            @(Html.DevExtreme().Form<HomeService.Models.FilterModel>
+                            ()
+                            .FormData(Model.filterModel)
+                            .LabelMode(FormLabelMode.Outside)
+                            .LabelLocation(FormLabelLocation.Top)
+                            .Items(items => {
+                                items.AddSimpleFor(m => m.startdate).Label(l => l.Text(sharedResource["From"]));
+                                items.AddSimpleFor(m => m.enddate).Label(l => l.Text(sharedResource["To"]));
+
+                                items.AddSimpleFor(m => m.requeststatusid).IsRequired(false).Label(l => l.Text("status"))
+      .Editor(e => e
+      .Lookup()
+      .DataSource(ds => ds.WebApi().Controller("Statistics").LoadAction("RequestStatesLookup").Key("Value"))
+      .ValueExpr("Value")
+      .DisplayExpr("Text").Placeholder(sharedResource["Select Status"])
+                                      .ShowClearButton(true)
+                                      .ClearButtonText(sharedResource["Clear"])
+                                      .CancelButtonText(sharedResource["Cancel"])
+                                      .SearchPlaceholder(sharedResource["searching"])
+      );
+
+
+
+                                items.AddButton()
+                            .HorizontalAlignment(HorizontalAlignment.Left)
+                            .ButtonOptions(b => b.Text(sharedResource["Submit"])
+                            .Type(ButtonType.Success)
+                            .UseSubmitBehavior(true)
+                            );
+                            })
+                            )
+
+
+
+
+                    </div><!-- post-group -->
+                </div><!-- card -->
+            </div>
+
+            <div class="col-lg-9">
+
+                <div class="card pd-30">
+                    <div class="timeline-group">
+                        @using HomeService.Reports
+
+                        <link rel="stylesheet" href="~/css/viewer.part.bundle.css" />
+
+                        <script src="~/js/viewer.part.bundle.js"></script>
+
+                        @Html.DevExpress().WebDocumentViewer("DocumentViewer").Height("1000px").Bind(Model.Report)
+                    </div><!-- timeline-group -->
+                </div><!-- card -->
+
+            </div>
+
+

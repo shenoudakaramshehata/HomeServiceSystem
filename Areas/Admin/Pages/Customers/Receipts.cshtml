@@ -1,0 +1,272 @@
+﻿@page
+@model HomeService.Areas.Admin.Pages.Customers.ReceiptsModel
+@{
+}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                  
+                        <h2 class="card-header d-flex justify-content-between align-items-center">
+                            @sharedResource["Receipts"]
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <div style="padding-top:20px;padding-left:20px;padding-right:20px">
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Customer"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["TlAr"] </div>
+                                        <div> @Model.customer.FullNameAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["TlEn"]  </div>
+                                        <div> @Model.customer.FullNameEn </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Nationality"]  </div>
+                                        <div> @Model.customer.Nationality.NationalityTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Email"]  </div>
+                                        <div> @Model.customer.Email </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tele1"]  </div>
+                                        <div> @Model.customer.Tele1 </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Tele2"]  </div>
+                                        <div> @Model.customer.Tele2 </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Mobile"]  </div>
+                                        <div> @Model.customer.Mobile </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Remarks"]  </div>
+                                        <div> @Model.customer.Remarks </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Picture"]  </div>
+                                        <div class="Details_img">
+                                            <img style="border-radius: 13%;" class="img-fluid" src="~/Images/Customer/@Model.customer.Pic" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Address"] </h4>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["City"]  </div>
+                                        <div> @Model.customer.Area.City.CityTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Area"]  </div>
+                                        <div> @Model.customer.Area.AreaTlAr </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Street"]  </div>
+                                        <div> @Model.customer.Street </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Block"]  </div>
+                                        <div> @Model.customer.Block </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Avenue"]  </div>
+                                        <div> @Model.customer.Avenue </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["BuildingNo"]  </div>
+                                        <div> @Model.customer.BuildingNo </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Floor"]  </div>
+                                        <div> @Model.customer.Floor </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["Contract"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["Serial"] </div>
+                                        <div> @Model.contract.ContractSerial </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["UnitTile"]  </div>
+                                        <div> @Model.contract.Unit.UnitTile </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["StartDate"]  </div>
+                                        <div> @Model.contract.StartDate </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["EndDate"]  </div>
+                                        <div> @Model.contract.EndDate </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Amount"]  </div>
+                                        <div> @Model.contract.Amount </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>@sharedResource["Remarks"]  </div>
+                                        <div> @Model.contract.Remarks </div>
+                                    </div>
+
+                                </div>
+                                  <div class="col-md-12 col-lg-6 mt-4">
+                                    <h4> @sharedResource["ReceiptsTotal"] </h4>
+                                    <hr />
+
+                                    <div class="d-flex justify-content-between">
+                                        <div> @sharedResource["Total"] </div>
+                                        <div> @Model.receiptsTotal </div>
+                                    </div>
+                                  
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="card-header">
+
+                            <h2 class="card-header d-flex justify-content-between align-items-center">
+                                @sharedResource["Receipts"]
+                                <a asp-page="AddReceipt" asp-route-id="@Model.contract.ContractId" class="btn btn-primary">@sharedResource["Add"]  @sharedResource["Receipt"]  </a>
+                            </h2>
+                        </div>
+
+                        @(Html.DevExtreme().DataGrid<HomeService.Models.Receipt>
+    ()
+    .DataSource(ds => ds.Mvc()
+    .Controller("Receipts")
+    .LoadAction("Get")
+    .InsertAction("Post")
+    .UpdateAction("Put")
+    .DeleteAction("Delete")
+    .Key("ReceiptId")
+        .LoadParams(new { contractId = Model.contract.ContractId })
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+    columns.AddFor(m=>m.Contract.CustomerId).Lookup(lookup => lookup
+    .DataSource(ds => ds.WebApi().Controller("Receipts").LoadAction("CustomerLookup").Key("Value"))
+    .ValueExpr("Value")
+    .DisplayExpr("Text")
+
+    ).Caption(sharedResource["Customer"]);
+  columns.AddFor(m => m.ContractId).Lookup(lookup => lookup
+    .DataSource(ds => ds.WebApi().Controller("Receipts").LoadAction("ContractLookup").Key("Value"))
+    .ValueExpr("Value")
+    .DisplayExpr("Text")
+    ).Caption(sharedResource["Contract"]);
+   columns.AddFor(m => m.PaymentMethodId).Lookup(lookup => lookup
+    .DataSource(ds => ds.WebApi().Controller("Receipts").LoadAction("PaymentMethodLookup").Key("Value"))
+    .ValueExpr("Value")
+    .DisplayExpr("Text")
+    ).Caption(sharedResource["PaymentMethod"]);
+   columns.AddFor(m => m.ReceiptServiceId).Lookup(lookup => lookup
+    .DataSource(ds => ds.WebApi().Controller("Receipts").LoadAction("ReceiptServiceLookup").Key("Value"))
+    .ValueExpr("Value")
+    .DisplayExpr("Text")
+    ).Caption(sharedResource["ReceiptService"]);
+
+    columns.AddFor(m => m.VDate).Caption(sharedResource["VDate"]);
+    columns.AddFor(m => m.Amount).Caption(sharedResource["Amount"]);
+    columns.AddFor(m => m.ReceiptSerial).Caption(sharedResource["Serial"]);
+    columns.Add().Caption(sharedResource["Actions"]).Width(200).Alignment(HorizontalAlignment.Center).CellTemplate(@<text>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-primary btn-sm"  href="/Admin/Customers/ReceiptDetails?id=<%- data.ReceiptId %>"> <i class="fas fa-eye"></i> </a>
+                                <a class="btn btn-success btn-sm"  href="/Admin/Customers/EditReceipt?id=<%- data.ReceiptId %>">  <i class="fas fa-edit"></i> </a>
+                         <a class="btn btn-danger btn-sm" href="/Admin/Customers/DeleteReceipt?id=<%- data.ReceiptId %>">  <i class="fas fa-trash"></i> </a>
+
+                        </div>
+                            </text>);
+    }
+    )
+    .Editing(e => e.Mode(GridEditMode.Popup)
+    .Texts(c => c
+    .CancelRowChanges(sharedResource["Cancel"])
+    .SaveRowChanges(sharedResource["Save"]).EditRow(sharedResource["Edit"])
+    .DeleteRow(sharedResource["Delete"])
+    .ConfirmDeleteMessage(sharedResource["ConfirmDeleteMessage"])
+    .AddRow(sharedResource["Add"]))
+
+
+
+
+    .Popup(p => p
+    .Title(sharedResource["Receipt"])
+    .ShowTitle(true)
+    .MaxWidth(750)
+    .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+
+
+    .Height(250)).Form(f => f.Items(items =>
+    {
+        items.AddGroup()
+        .ColCount(2)
+        .ColSpan(2)
+        .Items(groupItems =>
+        {
+            groupItems.AddSimple().DataField("ReceiptTlAr").IsRequired(true);
+            groupItems.AddSimple().DataField("ReceiptTlEn").IsRequired(true);
+            groupItems.AddSimple().DataField("CityId").IsRequired(true);
+        });
+
+
+
+    }))
+
+    )
+    .Paging(paging => paging.PageSize(10))
+    .Pager(pager =>
+    {
+        pager.Visible(true);
+        pager.DisplayMode(GridPagerDisplayMode.Full);
+        pager.ShowPageSizeSelector(true);
+        pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+        pager.ShowInfo(true);
+        pager.ShowNavigationButtons(true);
+
+    })
+    .HeaderFilter(headerFilter => headerFilter.Visible(true)).ShowColumnLines(false)
+    .ShowRowLines(true)
+    .RowAlternationEnabled(true)
+    .AllowColumnReordering(true)
+    .ShowRowLines(true)
+    .ShowColumnLines(true)
+    .ShowBorders(true)
+    .SearchPanel(searchPanel => searchPanel
+    .Visible(true)
+    .Width(240)
+    .Placeholder(sharedResource["SearchTxt"]))
+    .RemoteOperations(true)
+    .RtlEnabled(bool.Parse(sharedResource["ArLang"]))
+    )
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
